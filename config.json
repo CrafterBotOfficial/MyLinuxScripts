@@ -1,0 +1,26 @@
+{
+    "directory": "/home/crafterbot/MyLinuxScripts/files",
+    "targets": [
+    	"/etc/xdg/waybar",
+    	"/bin/edit",
+    	"/home/crafterbot/.config/hypr",
+        "/home/crafterbot/.config/alacritty",
+	    "/home/crafterbot/.config/nvim",
+        "/home/crafterbot/.config/rofi"
+    ],
+    "packages": [
+        "hyprland",
+        "hyprshot",
+        "hypridle",
+        "hyprlock",
+        "xdg-desktop-portal-hyprland",
+        "rofi",
+        "thunar",
+        "nemo",
+        "nvim",
+        "waybar",
+        "qt6ct",
+        "swww",
+        "alacritty"
+    ]
+}

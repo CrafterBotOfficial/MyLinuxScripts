@@ -1,0 +1,73 @@
+#!/bin/bash
+
+case "$1" in
+	"barhider")
+		if [ "$2" = "--build" ] || [ "$2" = "-b" ]; then
+			echo Compiling...
+			cd ~/.config/hypr/scripts/waybar_hider
+			pkill waybar_control
+			rm waybar_control
+			g++ main.cpp -o waybar_control
+			echo Finished
+			echo Running...
+			./waybar_control
+		else
+			nvim ~/.config/hypr/scripts/waybar_hider/main.cpp
+		fi
+	;;
+
+	"bar")
+		if [ "$2" = "s" ] || [ "$2" = "style" ]; then
+			sudo nvim /etc/xdg/waybar/style.css
+		else
+			sudo nvim /etc/xdg/waybar/config.jsonc
+		fi
+	;;
+	
+	"gtk")
+		nvim ~/.config/gtk-3.0/settings.ini
+	;;
+	"lock")
+		if [ "$2" = "idle" ]; then
+			nvim ~/.config/hypr/hypridle.conf
+		else
+			nvim ~/.config/hypr/hyprlock.conf
+		fi
+	;;
+
+	# help
+	"--help")
+		echo "barhider | options --build -b"
+		echo "bar | options style or s"
+		echo gtk
+		echo "lock | options idle"
+		echo "alacritty"
+		echo "env"
+		echo "exec"
+		echo "input"
+		echo "rules"
+		echo "style"
+		echo "Usage edit (options)"
+	;;
+
+	# eww
+	"eww") nvim ~/.config/eww/eww.yuck;;
+
+	# terminal emulator
+	"alacritty") nvim ~/.config/alacritty/alacritty.toml;;
+
+	# neovim
+	"nvim") nvim ~/.config/nvim/init.lua;;
+
+	# Hyprland configs
+	"env") nvim ~/.config/hypr/hyprland/env.conf;;
+	"bind") nvim ~/.config/hypr/hyprland/keybindings.conf;;
+	"exec") nvim ~/.config/hypr/hyprland/autostart.conf;;
+	"input") nvim ~/.config/hypr/hyprland/input.conf;;
+	"rules") nvim ~/.config/hypr/hyprland/input.conf;;
+	"style") nvim ~/.config/hypr/hyprland/style.conf;;
+
+	*)	
+		nvim ~/.config/hypr/hyprland.conf
+	;;
+esac

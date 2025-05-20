@@ -1,0 +1,99 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 30,
+    "spacing": 4,
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": ["hyprland/window"],
+    "modules-right": ["network", "pulseaudio", "cpu", "memory", "temperature", "battery", "clock"],
+
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": false,
+        "persistent_workspaces": {
+            "*": 0
+        },
+        "format": "{name}",
+        "format-icons": {
+            "1": "①",
+            "2": "②",
+            "3": "③",
+            "4": "④",
+            "5": "⑤",
+            "6": "⑥",
+            "7": "⑦",
+            "8": "⑧",
+            "9": "⑨",
+            "10": "⑩"
+        },
+        "active-only": false
+    },
+
+    "tray": {
+        "spacing": 10
+    },
+
+    "network": {
+        "format-wifi": "{signalStrength}% 󰖩",
+        "format-ethernet": "Connected 󰈀",
+        "format-disconnected": "Disconnected 󰖪",
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
+        "on-click": "nm-connection-editor"
+    },
+
+    "pulseaudio": {
+        "format": "{volume}% {icon}",
+        "format-muted": "Muted 󰖁",
+        "format-icons": {
+            "headphones": "󰋋",
+            "hands-free": "󰋍",
+            "headset": "󰋎",
+            "phone": "󰏲",
+            "portable": "󰏲",
+            "car": "󰄶",
+            "default": ["󰕿", "󰖀", "󰕾"]
+        },
+        "scroll-step": 5,
+        "on-click": "pavucontrol"
+    },
+
+    "cpu": {
+        "format": "{usage}% 󰍛",
+        "tooltip": true
+    },
+
+    "memory": {
+        "format": "{percentage}% 󰘚",
+        "tooltip": true,
+	"interval": 2
+    },
+    "temperature": {
+	"critical-threshold": 80,
+	"format-critical": "{temperatureC}°C ",
+	"format": "{temperatureC}°C ",
+	"thermal-zone": 2
+    },
+    "disk": {
+    	"format": "{percentage_used}% ",
+	"interval": 2
+    },
+
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}% 󰂄",
+        "format-plugged": "{capacity}% 󰂄",
+        "format-alt": "{time} {icon}",
+        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "tooltip": true
+    },
+
+    "clock": {
+        "format": "{:%I:%M %p}",
+        "tooltip-format": "<big>{:%Y-%m-%d %H:%M:%S}</big>",
+        "interval": 1
+    }
+}
