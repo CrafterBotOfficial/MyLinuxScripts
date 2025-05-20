@@ -1,7 +1,7 @@
 # MyLinuxScripts
 Scripts and dotfiles for my person computer. (hyprland, waybar configuration files). Only intended for my personal use to keep my files synced between my desktop and laptop.
 
-The `tool` file is a program that helps with uploading this and spreading it. Might delete your whole system so don't use it. 
+The `tool` file is a program that helps with uploading this and spreading it. **Might delete your whole system so don't use it.** 
 The `edit` bash script is for quickly making changes to configuration files. `edit --help`
 
 This repo is only intended for personal use so don't try to use it on your own computer.
