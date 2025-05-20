@@ -1,6 +1,11 @@
 # nvim
 packer_compiled.lua
 
+# cmake
+CPackConfig.cmake
+CPackSourceConfig.cmake
+
+
 # Prerequisites
 *.d
 
