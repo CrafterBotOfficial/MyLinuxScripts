@@ -6,7 +6,8 @@
     	"/home/crafterbot/.config/hypr",
         "/home/crafterbot/.config/alacritty",
 	    "/home/crafterbot/.config/nvim",
-        "/home/crafterbot/.config/rofi"
+        "/home/crafterbot/.config/rofi",
+        "/home/crafterbot/.config/qt6ct"
     ],
     "packages": [
         "hyprland",
