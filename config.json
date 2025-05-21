@@ -1,13 +1,15 @@
 {
     "directory": "/home/crafterbot/MyLinuxScripts/files",
     "targets": [
-    	"/etc/xdg/waybar",
     	"/bin/edit",
-    	"/home/crafterbot/.config/hypr",
+        "/home/crafterbot/.bashrc",
+    	"/home/crafterbot/.config/waybar",
+        "/home/crafterbot/.config/hypr",
         "/home/crafterbot/.config/alacritty",
 	    "/home/crafterbot/.config/nvim",
         "/home/crafterbot/.config/rofi",
-        "/home/crafterbot/.config/qt6ct"
+        "/home/crafterbot/.config/qt6ct",
+        "/home/crafterbot/.config/fastfetch"
     ],
     "packages": [
         "hyprland",
@@ -22,6 +24,7 @@
         "waybar",
         "qt6ct",
         "swww",
-        "alacritty"
+        "alacritty",
+        "ttf-jetbrains-mono-nerd"
     ]
 }

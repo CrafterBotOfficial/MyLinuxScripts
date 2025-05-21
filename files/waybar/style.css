@@ -1,138 +1,78 @@
-/* Base styles */
 * {
     border: none;
     border-radius: 0;
     font-family: "JetBrainsMono Nerd Font", monospace;
     font-size: 14px;
+    text-shadow: -0.5px -0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000;
     min-height: 0;
 }
 
-/* Window and background */
 window#waybar {
-    background-color: rgba(0, 0, 0, 0.4); /* Partially transparent black to match the night sky */
+    background-color: rgba(0, 0, 0, 0.4); 
     color: #ffffff;
     transition: all 0.3s ease;
 }
 
-/* Workspace buttons */
 #workspaces button {
     padding: 0 5px;
     background-color: transparent;
-    color: #a3be8c; /* Soft green from the forest and river hues */
+    color: #a3be8c; 
     border-bottom: 2px solid transparent;
     margin: 0 2px;
-    font-size: 18px; /* Increased font size for workspace icons */
+    font-size: 18px; 
 }
 
 #workspaces button:hover {
-    background-color: rgba(163, 190, 140, 0.2); /* Subtle hover effect */
+    background-color: rgba(163, 190, 140, 0.2);
     border-bottom: 2px solid #a3be8c;
 }
 
 #workspaces button.active {
     background-color: rgba(163, 190, 140, 0.3);
-    color: #ebcb8b; /* Warm yellow from the sunset */
+    color: #ebcb8b; 
     border-bottom: 2px solid #ebcb8b;
 }
 
-/* Tray */
 #tray {
     padding: 0 10px;
-    background-color: rgba(163, 190, 140, 0.2); /* Forest green background */
+    background-color: rgba(163, 190, 140, 0.2); 
     color: #ffffff;
     border-radius: 5px;
 }
 
-/* Network */
-#network {
+/* right side */
+
+#network, #pulseaudio, #cpu, #memory, #temperature, #battery, #clock {
     padding: 0 10px;
-    background-color: rgba(136, 192, 208, 0.4); /* Increased opacity for better readability */
+    background-color: rgba(136, 192, 208, 0.4);
     color: #ffffff;
     margin-right: 5px;
     border-radius: 5px;
 }
 
 #network.disconnected {
-    background-color: rgba(255, 85, 85, 0.4); /* Increased opacity */
-}
-
-/* Audio */
-#pulseaudio {
-    padding: 0 10px;
-    background-color: rgba(136, 192, 208, 0.4); /* Increased opacity */
-    color: #ffffff;
-    margin-right: 5px;
-    border-radius: 5px;
+    background-color: rgba(255, 85, 85, 0.4); 
 }
 
 #pulseaudio.muted {
-    background-color: rgba(255, 85, 85, 0.4); /* Increased opacity */
+    background-color: rgba(255, 85, 85, 0.4); 
     color: #ffffff;
-}
-
-/* CPU */
-#cpu {
-    padding: 0 10px;
-    background-color: rgba(136, 192, 208, 0.4); /* Increased opacity */
-    color: #ffffff;
-    margin-right: 5px;
-    border-radius: 5px;
-}
-
-/* Memory */
-#memory {
-    padding: 0 10px;
-    background-color: rgba(136, 192, 208, 0.4); /* Increased opacity */
-    color: #ffffff;
-    margin-right: 5px;
-    border-radius: 5px;
-}
-
-/* disk space used */
-#disk {
-    padding: 0 10px;
-    background-color: rgba(136, 192, 208, 0.4); /* Increased opacity */
-    color: #ffffff;
-    margin-right: 5px;
-    border-radius: 5px;
-}
-
-#temperature {
-    padding: 0 10px;
-    background-color: rgba(136, 192, 208, 0.4); /* Increased opacity */
-    color: #ffffff;
-    margin-right: 5px;
-    border-radius: 5px;  
-}
-
-/* Battery */
-#battery {
-    padding: 0 10px;
-    background-color: rgba(136, 192, 208, 0.4); /* Increased opacity */
-    color: #ffffff;
-    margin-right: 5px;
-    border-radius: 5px;
 }
 
 #battery.warning:not(.charging) {
-    background-color: rgba(255, 165, 0, 0.4); /* Increased opacity */
+    background-color: rgba(255, 165, 0, 0.4); 
     color: #ffffff;
 }
 
 #battery.critical:not(.charging) {
-    background-color: rgba(255, 85, 85, 0.4); /* Increased opacity */
+    background-color: rgba(255, 85, 85, 0.4);
     color: #ffffff;
 }
 
-/* Clock */
 #clock {
-    padding: 0 10px;
-    background-color: rgba(235, 203, 139, 0.4); /* Increased opacity */
-    color: #ffffff;
-    border-radius: 5px;
+    background-color: rgba(235, 203, 139, 0.4);
 }
 
-/* General module styling */
 #workspaces, #tray, #network, #pulseaudio, #cpu, #memory, #battery, #clock {
     border-radius: 5px;
     margin: 2px 2px;

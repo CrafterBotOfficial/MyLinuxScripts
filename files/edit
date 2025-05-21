@@ -18,9 +18,9 @@ case "$1" in
 
 	"bar")
 		if [ "$2" = "s" ] || [ "$2" = "style" ]; then
-			sudo nvim /etc/xdg/waybar/style.css
+			nvim ~/.config/waybar/style.css
 		else
-			sudo nvim /etc/xdg/waybar/config.jsonc
+			nvim ~/.config/waybar/config.jsonc
 		fi
 	;;
 	
