@@ -4,8 +4,8 @@
 #include <stdlib.h>
 
 int main() {
-    char *path = "/sys/class/thermal/thermal_zone2/temp";
-    if (access(path, F_OK) != 0) path = "/sys/class/hwmon/hwmon2/temp1_input";
+    char *path = "/sys/class/thermal/thermal_zone2/temp"; // laptop
+    if (access(path, F_OK) != 0) path = "/sys/class/hwmon/hwmon2/temp1_input"; // desktop
 
     FILE* file;
     int temperature;
