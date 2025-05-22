@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <unistd.h>
+#include <stdlib.h>
 
 int main() {
     char *path = "/sys/class/thermal/thermal_zone2/temp";
+    if (access(path, F_OK) != 0) path = "/sys/class/hwmon/hwmon2/temp1_input";
 
     FILE* file;
     int temperature;
@@ -12,7 +14,7 @@ loop:
     
     file = fopen(path, "r");
     if (file == NULL) {
-        printf("{\"text\":\"bruh\"}");
+        system("hyprctl notify -1 10000 \"rgb(f90409)\" \"Couldn't find path for thermal display waybar.\"");
         return 1;
     }
     fscanf(file, "%d", &temperature);
