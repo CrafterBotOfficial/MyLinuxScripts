@@ -27,6 +27,7 @@ help:
             << "    push - Replaces all config files on machine with ones the in " << saveDirectory << " (dangerous)\n"
             << "    pull - Copies all config files on machine to " << saveDirectory << "\n" 
             << "    install - Installs all packages specified in config (" << packageCount << " packages)\n"
+            << "    compile - Compiles c/c++ scripts within scripts_src and installs them.\n"
             << "\n"; 
         return 1;
     }
@@ -34,7 +35,8 @@ help:
     static const std::map<std::string, command> commands {
         { "push", push },
         { "pull", pull },
-        { "install", install }
+        { "install", install },
+        { "compile", compile }
     };
     auto cmd = commands.find(argv[1]); 
     if (cmd == commands.end()) goto help;
@@ -53,10 +55,28 @@ help:
             printf("Pulling to save directory...");
             executePull(targets);
             break;
+        case compile: 
+            printf("Compiling scripts_src...\n");
+            compileTargets(json["compile"]);
+            break;
     }
 
     printf("Finished\n");
     return 0;
+}
+
+void compileTargets(auto targets) {
+    for (auto target : targets) {
+        std::string name = target["target"];
+        auto command = target["tool"];
+        std::cout << "Compiling " << name << "\n";
+        
+        fs::path path(name);
+        execute(std::string(command) + " " + std::string(name) + " -o " + path.filename().string());
+        fs::rename(path.filename().string(), "scripts/" + path.parent_path().filename().string());
+
+        std::cout << "Done\n";
+    }
 }
 
 void executePull(auto targets) {

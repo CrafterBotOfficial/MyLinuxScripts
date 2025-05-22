@@ -5,7 +5,7 @@
 #include <unistd.h>
 #include <sys/socket.h>
 #include <sys/un.h>
-#include "./json.hpp"
+#include "./lib/json.hpp"
 
 // Function to get the number of windows in the current workspace
 int get_window_count() {

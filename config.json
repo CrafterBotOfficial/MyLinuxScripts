@@ -26,5 +26,15 @@
         "swww",
         "alacritty",
         "ttf-jetbrains-mono-nerd"
+    ],
+    "compile": [
+        {
+            "target": "scripts_src/waybar_hider/main.cpp",
+            "tool": "g++"
+        },
+        {
+            "target": "scripts_src/temperature/main.c",
+            "tool": "cc"
+        }
     ]
 }
