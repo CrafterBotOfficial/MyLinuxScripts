@@ -66,6 +66,8 @@ help:
 }
 
 void compileTargets(auto targets) {
+    fs::create_directories("scripts");
+
     for (auto target : targets) {
         std::string name = target["target"];
         auto command = target["tool"];
