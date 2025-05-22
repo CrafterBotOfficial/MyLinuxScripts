@@ -5,7 +5,7 @@
     "spacing": 4,
     "modules-left": ["hyprland/workspaces"],
     "modules-center": ["hyprland/window"],
-    "modules-right": ["network", "pulseaudio", "cpu", "memory", "temperature", "battery", "clock"],
+    "modules-right": ["network", "pulseaudio", "cpu", "memory", "custom/temperature", "battery", "clock"],
 
     "hyprland/workspaces": {
         "disable-scroll": true,
@@ -68,12 +68,10 @@
 	    "interval": 2
     },
 
-    "temperature": {
-        "critical-threshold": 80,
-        "format-critical": "{temperatureC}°C ",
-        "format": "{temperatureC}°C ",
-        "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-        "interval": "1"
+    "custom/temperature": {
+        "format": "{text}",
+        "exec": "MyLinuxScripts/scripts/temperature",
+        "return-type": "json"
     },
 
     "battery": {
