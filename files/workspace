@@ -1,0 +1,5 @@
+#!/bin/bash
+
+DIR=$PWD
+hyprctl dispatch exec "[floating; size 800 800; move 100 0] alacritty --class Alacritty,nvim-window --working-directory \"$DIR\" -e nvim ."
+hyprctl dispatch exec "[floating; size 800 200; move 0 0] alacritty --class Alacritty,build-window --working-directory \"$DIR\""

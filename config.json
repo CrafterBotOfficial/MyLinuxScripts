@@ -2,6 +2,7 @@
     "directory": "/home/crafterbot/MyLinuxScripts/files",
     "targets": [
     	"/bin/edit",
+        "/bin/workspace",
         "/home/crafterbot/.bashrc",
     	"/home/crafterbot/.config/waybar",
         "/home/crafterbot/.config/hypr",

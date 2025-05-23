@@ -1,19 +1,8 @@
 #!/bin/bash
 
 case "$1" in
-	"barhider")
-		if [ "$2" = "--build" ] || [ "$2" = "-b" ]; then
-			echo Compiling...
-			cd ~/.config/hypr/scripts/waybar_hider
-			pkill waybar_control
-			rm waybar_control
-			g++ main.cpp -o waybar_control
-			echo Finished
-			echo Running...
-			./waybar_control
-		else
-			nvim ~/.config/hypr/scripts/waybar_hider/main.cpp
-		fi
+	"workspace") 
+		sudo nvim /bin/workspace
 	;;
 
 	"bar")
@@ -37,7 +26,7 @@ case "$1" in
 
 	# help
 	"--help")
-		echo "barhider | options --build -b"
+		echo workspace
 		echo "bar | options style or s"
 		echo gtk
 		echo "lock | options idle"
