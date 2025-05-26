@@ -1,4 +1,10 @@
 
-//@theme "/usr/share/rofi/themes/arthur.rasi"
+//@theme "/home/crafterbot/.local/share/rofi/themes/rounded-nord-dark.rasi"
 
-@theme "/usr/share/rofi/themes/gruvbox-dark-soft.rasi"
+//@theme "/home/crafterbot/.local/share/rofi/themes/spotlight-dark.rasi"
+
+//@theme "/home/crafterbot/.local/share/rofi/themes/rounded-nord-dark.rasi"
+
+//@theme "/home/crafterbot/.local/share/rofi/themes/nord.rasi"
+
+@theme "/home/crafterbot/.local/share/rofi/themes/spotlight-dark.rasi"
