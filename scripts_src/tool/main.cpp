@@ -49,7 +49,7 @@ help:
             break;
         case install: 
             std::cout << "Installing packages...\n";
-            installPackages(json["packages"]);
+            installPackages(json["packages"], json["hypr-plugins"]);
             break;
         case pull: 
             printf("Pulling to save directory...");
@@ -123,7 +123,7 @@ void executePush(auto targets) {
     }
 }
 
-void installPackages(auto packages) {
+void installPackages(auto packages, auto plugins) {
     std::cout << "Are you sure? [y/n]: ";
     char input;
     std::cin >> input;
@@ -160,6 +160,16 @@ finished:
             packagesInstalled++;
         } catch (...) {
             std::cout << "Failed to install package " << package << "\n";
+        }
+
+        std::cout << "Installing Hyprland plugins\n";
+        execute("hyprpm update");
+        std::cout << "Updated";
+
+        for (std::string plugin : plugins) {
+            std::cout << "Installing " << plugin << "\n";
+            system(std::string("hyprpm add " + plugin).c_str());
+            execute("hyprpm enable " + plugin.substr(plugin.find_last_of('/') + 1));
         }
 
     std::cout << (packagesInstalled == 0 ? "No packages installed" : "Installed " + std::to_string(packagesInstalled) + " packages!") << "\n";
