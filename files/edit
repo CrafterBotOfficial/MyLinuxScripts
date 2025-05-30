@@ -53,7 +53,7 @@ case "$1" in
 	"bind") nvim ~/.config/hypr/hyprland/keybindings.conf;;
 	"exec") nvim ~/.config/hypr/hyprland/autostart.conf;;
 	"input") nvim ~/.config/hypr/hyprland/input.conf;;
-	"rules") nvim ~/.config/hypr/hyprland/input.conf;;
+	"rules") nvim ~/.config/hypr/hyprland/rules.conf;;
 	"style") nvim ~/.config/hypr/hyprland/style.conf;;
 
 	*)	
