@@ -27,7 +27,12 @@
         "qt6ct",
         "swww",
         "alacritty",
+        "meson",
+        "cpio",
         "ttf-jetbrains-mono-nerd"
+    ],
+    "hypr-plugins": [
+        "https://github.com/KZDKM/Hyprspace"
     ],
     "compile": [
         {
