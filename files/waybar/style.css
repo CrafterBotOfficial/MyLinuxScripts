@@ -1,3 +1,8 @@
+@define-color item-color rgba(136, 192, 208, 0.4);
+@define-color critical-color rgba(255, 85, 85, 0.4);
+@define-color warning-color rgba(255, 165, 0, 0.4);
+@define-color side-color rgba(235, 203, 139, 0.4);
+
 * {
     border: none;
     border-radius: 0;
@@ -44,37 +49,37 @@ window#waybar {
 
 #network, #pulseaudio, #cpu, #memory, #custom-temperature, #battery, #clock {
     padding: 0 10px;
-    background-color: rgba(136, 192, 208, 0.4);
+    background-color: @item-color;
     color: #ffffff;
     margin-right: 5px;
     border-radius: 5px;
 }
 
 #network.disconnected {
-    background-color: rgba(255, 85, 85, 0.4); 
+    background-color: @critical-color;
 }
 
 #pulseaudio.muted {
-    background-color: rgba(255, 85, 85, 0.4); 
+    background-color: @critical-color; 
     color: #ffffff;
 }
 
 #custom-temperature.hot {
-    background-color: rgba(255, 85, 85, 0.4);
+    background-color: @critical-color;
 }
 
 #battery.warning:not(.charging) {
-    background-color: rgba(255, 165, 0, 0.4); 
+    background-color: @warning-color; 
     color: #ffffff;
 }
 
 #battery.critical:not(.charging) {
-    background-color: rgba(255, 85, 85, 0.4);
+    background-color: @critical-color;
     color: #ffffff;
 }
 
 #clock {
-    background-color: rgba(235, 203, 139, 0.4);
+    background-color: @side-color;
 }
 
 #workspaces, #tray, #network, #pulseaudio, #cpu, #memory, #custom-temperature, #battery, #clock {
