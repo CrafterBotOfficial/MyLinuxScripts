@@ -55,26 +55,17 @@ window#waybar {
     border-radius: 5px;
 }
 
-#network.disconnected {
+#network.disconnected, #custom-temperature.hot {
     background-color: @critical-color;
 }
 
-#pulseaudio.muted {
+#battery.critical:not(.charging), #pulseaudio.muted {
     background-color: @critical-color; 
     color: #ffffff;
 }
 
-#custom-temperature.hot {
-    background-color: @critical-color;
-}
-
 #battery.warning:not(.charging) {
     background-color: @warning-color; 
-    color: #ffffff;
-}
-
-#battery.critical:not(.charging) {
-    background-color: @critical-color;
     color: #ffffff;
 }
 

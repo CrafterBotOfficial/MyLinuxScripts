@@ -69,7 +69,8 @@
         "format-plugged": "{capacity}% 󰂄",
         "format-alt": "{time} {icon}",
         "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
-        "tooltip": true
+        "tooltip": true,
+        "interval": 1
     },
 
     "clock": {
