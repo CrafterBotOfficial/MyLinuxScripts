@@ -1,18 +1,12 @@
-#include <iostream>
+#include "config.hpp"
 
-enum command {
-    pull,
-    push,
-    install,
-    compile
-};
+Config config;
 
-std::string saveDirectory;
+void pull_targets_from_os();
+void push_targets_to_os();
+void compile_utilies();
+void install_packages();
+void install_hypr_plugins();
 
-void clone(const std::string source, const std::string path);
-void executePush(auto targets);
-void executePull(auto targets);
-void installPackages(auto packages, auto plugins);
-void compileTargets(auto targets);
-std::string execute(std::string command);
-std::string getCopyPath(std::string source);
+bool ask_user_for_confirmation(std::string query);
+std::string run_command(std::string cmd);
