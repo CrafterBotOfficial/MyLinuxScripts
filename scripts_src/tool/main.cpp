@@ -4,7 +4,6 @@
 #include <ctime>
 
 int main(int argc, char **argv) {
-    // config = Config();
     config.workingDirectory = std::filesystem::path(argv[0]).parent_path();
 
     Logger::log("Opening configuration file");
@@ -34,17 +33,19 @@ help:
                       << "  compile - Compiles utility projects (like waybar_hider).\n"
                       << "  install - Installs packages listed in config (Including from AUR).\n"
                       << "  sync - Syncs local repo with online Github repository.\n"
+                      << "  plugins - Installs Hyprland plugins.\n"
                       << "args : --verbose\n";
             break;
         }
 
         // tasks
-        if (config.mode != 0)    continue;
+        if (config.mode != 0)       continue;
         if (arg == "pull")          config.mode = operation::pull;
         else if (arg == "push")     config.mode = operation::push;
         else if (arg == "compile")  config.mode = operation::compile;
         else if (arg == "install")  config.mode = operation::install;
         else if (arg == "sync")     config.mode = operation::sync;
+        else if (arg == "plugins")  config.mode = operation::plugins;
         else                        goto help;
     }
 
@@ -66,6 +67,9 @@ help:
             break;
         case operation::sync: 
             sync_git();
+            break;
+        case operation::plugins:
+            install_hypr_plugins();
             break;
     }
 
@@ -189,27 +193,6 @@ finished:
         install_hypr_plugins();
 }
 
-void install_hypr_plugins() {
-    run_command("hyprpm update");
-
-    auto plugins = config.json["hypr-plugins"];
-    for (string plugin : plugins) {
-        Logger::debug("Adding " + plugin);
-        run_command("hyprpm add " + plugin + " && hyprpm enable " + plugin); // if already installed it will do nothing except bitch at the user
-    }
-}
-
-bool ask_user_for_confirmation(string query) {
-    Logger::log(query);
-    char input;
-    std::cin >> input;
-    if (input != 'y' && input != 'Y') {
-        Logger::log("Aborting");
-        return false;
-    }
-    return true;
-}
-
 void sync_git() {
     Logger::debug("Pulling files...");
     pull_targets_from_os();
@@ -226,6 +209,29 @@ void sync_git() {
     }
     system(string("git add --all && git commit -m \""+ input_str + "\"").c_str());
     system("git pull && git push");
+}
+
+void install_hypr_plugins() {
+    system("hyprpm update");
+ 
+    auto plugins = config.json["hypr-plugins"];
+    for (string plugin : plugins) {
+        int last_slash = plugin.find_last_of('/');
+        string plugin_name = plugin.substr(last_slash + 1, plugin.length() - last_slash);
+        Logger::debug("Adding " + plugin_name);
+        system(string("hyprpm add " + plugin + " && hyprpm enable " + plugin_name).c_str()); // if already installed it will do nothing except bitch at the user
+    }
+}
+
+bool ask_user_for_confirmation(string query) {
+    Logger::log(query);
+    char input;
+    std::cin >> input;
+    if (input != 'y' && input != 'Y') {
+        Logger::log("Aborting");
+        return false;
+    }
+    return true;
 }
 
 std::string run_command(std::string cmd) {

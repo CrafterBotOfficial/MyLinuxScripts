@@ -5,7 +5,8 @@ enum operation {
     push,
     compile,
     install,
-    sync
+    sync,
+    plugins
 };
 class Config {
     public:
