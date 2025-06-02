@@ -218,7 +218,7 @@ void sync_git() {
     char buffer[80];
     strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", localtime(&now));
     system(string("git add --all && git commit -m \""+ string(buffer) + "\"").c_str());
-    system("git pull");
+    system("git pull && git push");
 }
 
 std::string run_command(std::string cmd) {
