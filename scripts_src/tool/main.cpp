@@ -214,11 +214,10 @@ void sync_git() {
     Logger::debug("Pulling files...");
     pull_targets_from_os();
 
-    string input_str;
-    char *input;
     Logger::log("Git commit title:");
+    string input_str;
     std::cin >> input_str;
-    input_str = string(input);
+
     if (input_str.empty()) {
         time_t now = time(nullptr);
         char buffer[80];
