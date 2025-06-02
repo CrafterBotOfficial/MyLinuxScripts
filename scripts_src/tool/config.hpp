@@ -1,7 +1,7 @@
 #include "lib/json/single_include/nlohmann/json.hpp"
 
 enum operation {
-    pull,
+    pull = 1,
     push,
     compile,
     install
@@ -9,7 +9,7 @@ enum operation {
 class Config {
     public:
         bool verbose;
-        operation mode;
+        operation mode = (operation)0;
         nlohmann::json json;
         std::filesystem::path workingDirectory;
 };

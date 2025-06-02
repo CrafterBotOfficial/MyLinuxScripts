@@ -33,7 +33,7 @@ help:
         }
 
         // tasks
-        if (config.mode != NULL)    continue;
+        if (config.mode != 0)    continue;
         if (arg == "pull")          config.mode = operation::pull;
         else if (arg == "push")     config.mode = operation::push;
         else if (arg == "compile")  config.mode = operation::compile;
@@ -42,6 +42,9 @@ help:
     }
 
     switch (config.mode) {
+        case 0:
+            Logger::debug("Nothing to do :("); 
+            break;
         case operation::pull: 
             pull_targets_from_os();
             break;
@@ -65,13 +68,7 @@ void pull_targets_from_os() {
     filesystem::path relative_path = config.workingDirectory.string() + "/files/";
 
     if (filesystem::is_directory(relative_path)) {
-        Logger::log("Delete \"" + relative_path.string() + "\"?");
-        Logger::log("Are you sure [y/n]");
-        
-        char input;
-        std::cin >> input;
-
-        if (input != 'y' && input != 'Y') {
+        if(!ask_user_for_confirmation("Delete \"" + relative_path.string() + "\" directory? [y/n]")) {
             Logger::log("Aborting...");
             return;
         }
