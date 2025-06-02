@@ -4,7 +4,8 @@ enum operation {
     pull = 1,
     push,
     compile,
-    install
+    install,
+    sync
 };
 class Config {
     public:

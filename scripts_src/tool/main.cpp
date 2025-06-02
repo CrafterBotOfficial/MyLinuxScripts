@@ -1,13 +1,18 @@
 #include "main.hpp"
 #include "logger.hpp"
 #include <iostream>
+#include <ctime>
 
 int main(int argc, char **argv) {
     // config = Config();
     config.workingDirectory = std::filesystem::path(argv[0]).parent_path();
 
-    Logger::log("Opening configuration file.");
+    Logger::log("Opening configuration file");
     FILE *config_file = fopen("config.json", "r");
+    if (config_file == NULL) {
+        Logger::log("Failed to find config.json in the working directory. Please ensure your running this tool in the MyLinuxScripts directory.");
+        return 1;
+    }
     
     config.json = nlohmann::json::parse(config_file);
 
@@ -28,6 +33,7 @@ help:
                       << "  push - Overrites all dotfiles with specified ones in files directory.\n"
                       << "  compile - Compiles utility projects (like waybar_hider).\n"
                       << "  install - Installs packages listed in config (Including from AUR).\n"
+                      << "  sync - Syncs local repo with online Github repository.\n"
                       << "args : --verbose\n";
             break;
         }
@@ -38,6 +44,7 @@ help:
         else if (arg == "push")     config.mode = operation::push;
         else if (arg == "compile")  config.mode = operation::compile;
         else if (arg == "install")  config.mode = operation::install;
+        else if (arg == "sync")     config.mode = operation::sync;
         else                        goto help;
     }
 
@@ -57,9 +64,12 @@ help:
         case operation::install:
             install_packages();
             break;
+        case operation::sync: 
+            sync_git();
+            break;
     }
 
-    Logger::log("\nCompleted tasks!\n");
+    Logger::log("Completed tasks!");
 }
 
 // todo: combine pull and push to reduce the amount of code
@@ -198,6 +208,17 @@ bool ask_user_for_confirmation(string query) {
         return false;
     }
     return true;
+}
+
+void sync_git() {
+    Logger::debug("Pulling files...");
+    pull_targets_from_os();
+
+    time_t now = time(nullptr);
+    char buffer[80];
+    strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", localtime(&now));
+    system(string("git add --all && git commit -m \""+ string(buffer) + "\"").c_str());
+    system("git pull");
 }
 
 std::string run_command(std::string cmd) {
