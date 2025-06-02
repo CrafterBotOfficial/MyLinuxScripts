@@ -214,11 +214,19 @@ void sync_git() {
     Logger::debug("Pulling files...");
     pull_targets_from_os();
 
-    time_t now = time(nullptr);
-    char buffer[80];
-    strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", localtime(&now));
-    system(string("git add --all && git commit -m \""+ string(buffer) + "\"").c_str());
-    system("git pull && git push");
+    string input_str;
+    char *input;
+    Logger::log("Git commit title:");
+    std::cin >> input_str;
+    input_str = string(input);
+    if (input_str.empty()) {
+        time_t now = time(nullptr);
+        char buffer[80];
+        strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", localtime(&now));
+        input_str = string(buffer);
+    }
+    system(string("git add --all && git commit -m \""+ input_str + "\"").c_str());
+    // system("git pull && git push");
 }
 
 std::string run_command(std::string cmd) {
