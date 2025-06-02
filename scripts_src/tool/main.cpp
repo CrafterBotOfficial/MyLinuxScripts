@@ -225,7 +225,7 @@ void sync_git() {
         input_str = string(buffer);
     }
     system(string("git add --all && git commit -m \""+ input_str + "\"").c_str());
-    // system("git pull && git push");
+    system("git pull && git push");
 }
 
 std::string run_command(std::string cmd) {
