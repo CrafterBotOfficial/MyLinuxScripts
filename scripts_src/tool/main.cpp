@@ -143,10 +143,18 @@ void compile_utilies() {
     auto utils = config.json["compile"];
     for (auto util : utils) {
         filesystem::path path(util["target"]);
-        string command = util["tool"];
+        string tool = util["tool"];
         Logger::debug("Compiling " + path.string());
 
-        system(string(command + " " + path.string() + " -o " + output_directory.string() + "/" + path.parent_path().filename().string()).c_str());
+        string flags;
+        for (string flag : util["flags"]) {
+            Logger::debug("flag " + flag);
+            flags.append(" " + flag);
+        }
+
+        string command = string(tool + " " + path.string() + " -o " + output_directory.string() + "/" + path.parent_path().filename().string() + flags);
+        Logger::debug(command);
+        system(command.c_str());
     }
 }
 
