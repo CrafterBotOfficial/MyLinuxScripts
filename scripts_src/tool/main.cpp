@@ -120,7 +120,7 @@ void push_targets_to_os() {
 
         filesystem::path path(path_str);
         filesystem::path relative_file_path(relative_path.string() + path.filename().string());
-        system(string("sudo cp -fr " + relative_file_path.string() + " " + path.parent_path().string()).c_str());
+        system(string("sudo cp -a --preserve=mode -fr " + relative_file_path.string() + " " + path.parent_path().string()).c_str());
     }
     Logger::debug("Reloading hyprland.");
     system("hyprctl reload");
