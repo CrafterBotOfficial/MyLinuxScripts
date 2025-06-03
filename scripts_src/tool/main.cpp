@@ -4,7 +4,7 @@
 #include <ctime>
 
 int main(int argc, char **argv) {
-    config.workingDirectory = std::filesystem::path(argv[0]).parent_path();
+    config.workingDirectory = filesystem::path(argv[0]).parent_path();
 
     Logger::log("Opening configuration file");
     FILE *config_file = fopen("config.json", "r");
@@ -16,7 +16,7 @@ int main(int argc, char **argv) {
     config.json = nlohmann::json::parse(config_file);
 
     for (int i = 1; i < argc; i++) {
-        std::string arg = argv[i];
+        string arg = argv[i];
         
         // settings
         if (arg == "--verbose" || arg == "-v") {
@@ -27,7 +27,7 @@ int main(int argc, char **argv) {
         }
         if (arg == "--help" || arg == "-h") {
 help:
-            std::cout << "Commands:\n"
+            cout << "Commands:\n"
                       << "  pull - Pulls all dotfiles specified in config to files directory.\n"
                       << "  push - Overrites all dotfiles with specified ones in files directory.\n"
                       << "  compile - Compiles utility projects (like waybar_hider).\n"
@@ -78,7 +78,7 @@ help:
 
 // todo: combine pull and push to reduce the amount of code
 void pull_targets_from_os() {
-    auto targets = config.json["targets"].get<std::vector<std::string>>(); 
+    auto targets = config.json["targets"].get<vector<string>>(); 
     filesystem::path relative_path = config.workingDirectory.string() + "/files/";
 
     if (filesystem::is_directory(relative_path)) {
@@ -101,15 +101,12 @@ void pull_targets_from_os() {
 }
 
 void push_targets_to_os() {
-    Logger::log("This will overwrite all files & directories specified in targets. Are you sure? [y/n]");
-    char input;
-    std::cin >> input;
-    if (input != 'y' && input != 'Y') {
-        Logger::log("Coward, aborting");
+    if (!ask_user_for_confirmation("This will overwrite all files & directories specified in targets. Are you sure? [y/n]")) {
+        Logger::log("Aborting...");
         return;
     }
 
-    auto targets = config.json["targets"].get<std::vector<std::string>>(); 
+    auto targets = config.json["targets"].get<vector<string>>(); 
     filesystem::path relative_path = config.workingDirectory.string() + "/files/";
 
     if (!filesystem::is_directory(relative_path)) {
@@ -207,8 +204,10 @@ void sync_git() {
 
     Logger::log("Git commit title:");
     string input_str;
-    std::cin >> input_str;
-
+    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // clear input buffer
+    getline (cin, input_str);
+    Logger::debug("Got " + input_str);
+    
     if (input_str.empty()) {
         time_t now = time(nullptr);
         char buffer[80];
@@ -234,7 +233,7 @@ void install_hypr_plugins() {
 bool ask_user_for_confirmation(string query) {
     Logger::log(query);
     char input;
-    std::cin >> input;
+    cin >> input;
     if (input != 'y' && input != 'Y') {
         Logger::log("Aborting");
         return false;
@@ -242,7 +241,7 @@ bool ask_user_for_confirmation(string query) {
     return true;
 }
 
-std::string run_command(std::string cmd) {
+string run_command(string cmd) {
     char buffer[128];
     string output;
     FILE* pipe = popen(cmd.c_str(), "r");
@@ -252,10 +251,10 @@ std::string run_command(std::string cmd) {
 }
 
 void Logger::log(string txt) {
-    std::cout << txt << "\n";
+    cout << txt << "\n";
 }
 
 void Logger::debug(string txt) {
     if (config.verbose) 
-        std::cout << "[DEBUG]: " << txt << "\n";
+        cout << "[DEBUG]: " << txt << "\n";
 }
