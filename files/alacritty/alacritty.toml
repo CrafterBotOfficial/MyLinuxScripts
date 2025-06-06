@@ -1,4 +1,13 @@
 [window]
-opacity = 0.85
+opacity = 0.75 # 0.85
 blur = true
-padding = { x = 3, y = 5 }
+padding = { x = 6, y = 6 }
+
+[font]
+# size = 12
+normal = { family = "JetBrainsMonoNL NF", style = "Regular" }
+bold = { family = "JetBrainsMonoNL NF", style = "Bold" }
+italic = { family = "JetBrainsMonoNL NF", style = "Italic" }
+bold_italic = { family = "JetBrainsMonoNL NF", style = "Bold Italic" }
+size = 10.3
+

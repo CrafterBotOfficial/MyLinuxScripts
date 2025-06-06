@@ -10,7 +10,7 @@ int main() {
     FILE* file;
     int temperature;
     bool critical;
-loop:    
+loop:
     
     file = fopen(path, "r");
     if (file == NULL) {
