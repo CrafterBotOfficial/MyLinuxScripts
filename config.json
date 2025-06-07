@@ -2,15 +2,14 @@
     "directory": "/home/crafterbot/MyLinuxScripts/files",
     "targets": [
     	"/bin/edit",
-        "/bin/workspace",
-        "/home/crafterbot/.bashrc",
+      "/bin/workspace",
+      "/home/crafterbot/.bashrc",
     	"/home/crafterbot/.config/waybar",
-        "/home/crafterbot/.config/hypr",
-        "/home/crafterbot/.config/alacritty",
-	    "/home/crafterbot/.config/nvim",
-        "/home/crafterbot/.config/rofi",
-        "/home/crafterbot/.config/qt6ct",
-        "/home/crafterbot/.config/fastfetch"
+      "/home/crafterbot/.config/hypr",
+      "/home/crafterbot/.config/alacritty",
+      "/home/crafterbot/.config/rofi",
+      "/home/crafterbot/.config/qt6ct",
+      "/home/crafterbot/.config/fastfetch"
     ],
     "packages": [
         "hyprland",
